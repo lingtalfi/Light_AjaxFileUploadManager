@@ -1,0 +1,21 @@
+ajax_file_upload_manager:
+    instance: Ling\Light_AjaxFileUploadManager\Service\LightAjaxFileUploadManagerService
+    methods:
+        setApplicationDir:
+            dir: ${app_dir}
+    methods_collection: []
+#        -
+#            method: addActionLists
+#            args:
+#                actionLists:
+#                    lka_user_profile:
+#                        -
+#                            storeDir: www/uploads/test
+#                            returnUrlDir: /uploads/test
+#                            imageTransformer: resize(200)
+#        -
+#            method: addValidationRules
+#            args:
+#                validationRules:
+#                    id_one: []
+
