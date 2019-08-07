@@ -116,6 +116,10 @@ I recommend to use CSRF protection all the time. This is explained in the aforem
 History Log
 =============
 
+- 1.1.1 -- 2019-08-07
+
+    - fix LightAjaxFileUploadManagerRenderingUtil->printField file input name conflicting with ajax generated input
+    
 - 1.1.0 -- 2019-08-07
 
     - the "db_update" action list now supports the $userId token
