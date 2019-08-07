@@ -79,7 +79,7 @@ Returns array.
 
 Source Code
 ===========
-See the source code for method [LightAjaxFileUploadManagerService::uploadItem](https://github.com/lingtalfi/Light_AjaxFileUploadManager/blob/master/Service/LightAjaxFileUploadManagerService.php#L124-L248)
+See the source code for method [LightAjaxFileUploadManagerService::uploadItem](https://github.com/lingtalfi/Light_AjaxFileUploadManager/blob/master/Service/LightAjaxFileUploadManagerService.php#L150-L274)
 
 
 See Also

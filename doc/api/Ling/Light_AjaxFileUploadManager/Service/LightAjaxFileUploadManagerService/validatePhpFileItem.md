@@ -68,7 +68,7 @@ Exceptions thrown
 
 Source Code
 ===========
-See the source code for method [LightAjaxFileUploadManagerService::validatePhpFileItem](https://github.com/lingtalfi/Light_AjaxFileUploadManager/blob/master/Service/LightAjaxFileUploadManagerService.php#L267-L303)
+See the source code for method [LightAjaxFileUploadManagerService::validatePhpFileItem](https://github.com/lingtalfi/Light_AjaxFileUploadManager/blob/master/Service/LightAjaxFileUploadManagerService.php#L293-L329)
 
 
 See Also

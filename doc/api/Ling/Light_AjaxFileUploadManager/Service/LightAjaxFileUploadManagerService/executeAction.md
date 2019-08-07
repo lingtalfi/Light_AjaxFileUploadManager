@@ -16,7 +16,7 @@ Description
 ================
 
 
-protected [LightAjaxFileUploadManagerService::executeAction](https://github.com/lingtalfi/Light_AjaxFileUploadManager/blob/master/doc/api/Ling/Light_AjaxFileUploadManager/Service/LightAjaxFileUploadManagerService/executeAction.md)(array $action, array $phpFileItem) : string | null
+protected [LightAjaxFileUploadManagerService::executeAction](https://github.com/lingtalfi/Light_AjaxFileUploadManager/blob/master/doc/api/Ling/Light_AjaxFileUploadManager/Service/LightAjaxFileUploadManagerService/executeAction.md)(array $action, array $phpFileItem, string $actionId) : string | null
 
 
 
@@ -42,6 +42,10 @@ Parameters
 
     A valid php $_FILES item.
 
+- actionId
+
+    The action id. This is used for debugging purposes.
+
 
 Return values
 ================
@@ -62,7 +66,7 @@ Exceptions thrown
 
 Source Code
 ===========
-See the source code for method [LightAjaxFileUploadManagerService::executeAction](https://github.com/lingtalfi/Light_AjaxFileUploadManager/blob/master/Service/LightAjaxFileUploadManagerService.php#L319-L396)
+See the source code for method [LightAjaxFileUploadManagerService::executeAction](https://github.com/lingtalfi/Light_AjaxFileUploadManager/blob/master/Service/LightAjaxFileUploadManagerService.php#L347-L486)
 
 
 See Also

@@ -4,7 +4,7 @@
 
 The LightAjaxFileUploadManagerService class
 ================
-2019-08-01 --> 2019-08-06
+2019-08-01 --> 2019-08-07
 
 
 
@@ -28,15 +28,17 @@ class <span class="pl-k">LightAjaxFileUploadManagerService</span>  {
     - protected array [$actionLists](#property-actionLists) ;
     - protected array [$validationRules](#property-validationRules) ;
     - protected string [$applicationDir](#property-applicationDir) ;
+    - protected Ling\Light\ServiceContainer\LightServiceContainerInterface [$container](#property-container) ;
 
 - Methods
     - public [__construct](https://github.com/lingtalfi/Light_AjaxFileUploadManager/blob/master/doc/api/Ling/Light_AjaxFileUploadManager/Service/LightAjaxFileUploadManagerService/__construct.md)() : void
     - public [setApplicationDir](https://github.com/lingtalfi/Light_AjaxFileUploadManager/blob/master/doc/api/Ling/Light_AjaxFileUploadManager/Service/LightAjaxFileUploadManagerService/setApplicationDir.md)(string $applicationDir) : void
+    - public [setContainer](https://github.com/lingtalfi/Light_AjaxFileUploadManager/blob/master/doc/api/Ling/Light_AjaxFileUploadManager/Service/LightAjaxFileUploadManagerService/setContainer.md)(Ling\Light\ServiceContainer\LightServiceContainerInterface $container) : void
     - public [addActionLists](https://github.com/lingtalfi/Light_AjaxFileUploadManager/blob/master/doc/api/Ling/Light_AjaxFileUploadManager/Service/LightAjaxFileUploadManagerService/addActionLists.md)(array $actionLists) : void
     - public [addValidationRules](https://github.com/lingtalfi/Light_AjaxFileUploadManager/blob/master/doc/api/Ling/Light_AjaxFileUploadManager/Service/LightAjaxFileUploadManagerService/addValidationRules.md)(array $validationRules) : void
     - public [uploadItem](https://github.com/lingtalfi/Light_AjaxFileUploadManager/blob/master/doc/api/Ling/Light_AjaxFileUploadManager/Service/LightAjaxFileUploadManagerService/uploadItem.md)(string $id, array $phpFileItem, array $params = []) : array
     - protected [validatePhpFileItem](https://github.com/lingtalfi/Light_AjaxFileUploadManager/blob/master/doc/api/Ling/Light_AjaxFileUploadManager/Service/LightAjaxFileUploadManagerService/validatePhpFileItem.md)(string $validationRuleName, ?$parameter, array $phpFileItem, string &$errorMessage = null) : bool
-    - protected [executeAction](https://github.com/lingtalfi/Light_AjaxFileUploadManager/blob/master/doc/api/Ling/Light_AjaxFileUploadManager/Service/LightAjaxFileUploadManagerService/executeAction.md)(array $action, array $phpFileItem) : string | null
+    - protected [executeAction](https://github.com/lingtalfi/Light_AjaxFileUploadManager/blob/master/doc/api/Ling/Light_AjaxFileUploadManager/Service/LightAjaxFileUploadManagerService/executeAction.md)(array $action, array $phpFileItem, string $actionId) : string | null
     - protected [transformImage](https://github.com/lingtalfi/Light_AjaxFileUploadManager/blob/master/doc/api/Ling/Light_AjaxFileUploadManager/Service/LightAjaxFileUploadManagerService/transformImage.md)(string $srcPath, string $dstPath, string $imageTransformer, string $fileName) : bool
     - protected [getTransformedName](https://github.com/lingtalfi/Light_AjaxFileUploadManager/blob/master/doc/api/Ling/Light_AjaxFileUploadManager/Service/LightAjaxFileUploadManagerService/getTransformedName.md)(string $name, string $nameTransformer) : string
     - protected [extractFunctionInfo](https://github.com/lingtalfi/Light_AjaxFileUploadManager/blob/master/doc/api/Ling/Light_AjaxFileUploadManager/Service/LightAjaxFileUploadManagerService/extractFunctionInfo.md)(string $transformer) : array
@@ -75,6 +77,14 @@ Properties
     
     
 
+- <span id="property-container"><b>container</b></span>
+
+    This property holds the container for this instance.
+    Note: this property is only required for certain actions, such as db_update.
+    However, it's recommended to always instantiate the service with the container, just in case.
+    
+    
+
 
 
 Methods
@@ -82,6 +92,7 @@ Methods
 
 - [LightAjaxFileUploadManagerService::__construct](https://github.com/lingtalfi/Light_AjaxFileUploadManager/blob/master/doc/api/Ling/Light_AjaxFileUploadManager/Service/LightAjaxFileUploadManagerService/__construct.md) &ndash; Builds the LightAjaxFileUploadManagerService instance.
 - [LightAjaxFileUploadManagerService::setApplicationDir](https://github.com/lingtalfi/Light_AjaxFileUploadManager/blob/master/doc/api/Ling/Light_AjaxFileUploadManager/Service/LightAjaxFileUploadManagerService/setApplicationDir.md) &ndash; Sets the applicationDir.
+- [LightAjaxFileUploadManagerService::setContainer](https://github.com/lingtalfi/Light_AjaxFileUploadManager/blob/master/doc/api/Ling/Light_AjaxFileUploadManager/Service/LightAjaxFileUploadManagerService/setContainer.md) &ndash; Sets the container.
 - [LightAjaxFileUploadManagerService::addActionLists](https://github.com/lingtalfi/Light_AjaxFileUploadManager/blob/master/doc/api/Ling/Light_AjaxFileUploadManager/Service/LightAjaxFileUploadManagerService/addActionLists.md) &ndash; Adds action lists to this instance.
 - [LightAjaxFileUploadManagerService::addValidationRules](https://github.com/lingtalfi/Light_AjaxFileUploadManager/blob/master/doc/api/Ling/Light_AjaxFileUploadManager/Service/LightAjaxFileUploadManagerService/addValidationRules.md) &ndash; Adds validation rules to this instance.
 - [LightAjaxFileUploadManagerService::uploadItem](https://github.com/lingtalfi/Light_AjaxFileUploadManager/blob/master/doc/api/Ling/Light_AjaxFileUploadManager/Service/LightAjaxFileUploadManagerService/uploadItem.md) &ndash; and return the json array in the form of a php array.

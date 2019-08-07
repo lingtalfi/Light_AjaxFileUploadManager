@@ -4,6 +4,8 @@ dependencies:
         - Light_Logger
         - Bat
         - CSRFTools
+        - Light_Database
+        - Light_UserManager
         - ThumbnailTools
         - Chloroform
     

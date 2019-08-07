@@ -57,7 +57,7 @@ Exceptions thrown
 
 Source Code
 ===========
-See the source code for method [LightAjaxFileUploadManagerService::extractFunctionInfo](https://github.com/lingtalfi/Light_AjaxFileUploadManager/blob/master/Service/LightAjaxFileUploadManagerService.php#L523-L536)
+See the source code for method [LightAjaxFileUploadManagerService::extractFunctionInfo](https://github.com/lingtalfi/Light_AjaxFileUploadManager/blob/master/Service/LightAjaxFileUploadManagerService.php#L613-L626)
 
 
 See Also

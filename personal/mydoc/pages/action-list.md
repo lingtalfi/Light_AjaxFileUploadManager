@@ -88,4 +88,52 @@ Note that all entries are optional, depending on the action.
                             in this case).
                             
                             Note: this method will replace any previously existing file if it has the same location.
-                                                   
+- db_update: array. This entry updates a table in the database with the value computed if the **returnUrlDir** option is set.
+                    This features depends on other services, so make sure the following service are accessible via your service container
+                    before you continue:
+                        - [user_manager](https://github.com/lingtalfi/Light_UserManager/) 
+                        - [database](https://github.com/lingtalfi/Light_Database)
+                    The db_update array has the following structure:
+                        - ?db: string, the name of the database to update. This is optional. The default will be the default database of the pdo connection (defined by the configuration of the database service).
+                        - table: string, the name of the table (without the database prefix) to update
+                        - column: string, the name of the column to update
+                        - where: array, the fields forming the where condition of the sql update statement.
+                            For instance if the where array is like this:
+                                - user_id: $userIdentifier 
+                                
+                            Then the where statement will look something like this:
+                                - where user_id = $userIdentifier
+                                
+                            If the where array contains multiple entries like this:
+                                - user_id: 45 
+                                - amount: 78
+                                
+                             Then the entries are combined using the AND logical operator, and so the resultting where 
+                             statement will look like this:
+                             
+                                - where user_id = 45 and amount = 78
+                                
+                             As for now, that's all we can do (I might expand on this notation as I have a concrete need for it).
+                             The last important thing to know is that the value of the where can be a special token.
+                             
+                             A token is basically replaced with another value when computing the sql statement.
+                             The available tokens are:
+                                - $userIdentifier: the user identifier (the user being the user returned by the user_manager service's getUser method) 
+                                - $userId: the user id (assuming that the user has a getId method, which is the case for a [WebsiteLightUser](https://github.com/lingtalfi/Light_User/blob/master/doc/api/Ling/Light_User/WebsiteLightUser.md)) 
+                             
+                             
+                             
+                             
+                             
+                                
+                                
+                                
+                                  
+                                
+                                
+                                
+                                    
+                        
+                        
+                    
+                                                       

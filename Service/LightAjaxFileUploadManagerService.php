@@ -3,6 +3,7 @@
 
 namespace Ling\Light_AjaxFileUploadManager\Service;
 
+use Ling\Bat\ArrayTool;
 use Ling\Bat\CaseTool;
 use Ling\Bat\ConvertTool;
 use Ling\Bat\FileSystemTool;
@@ -11,7 +12,10 @@ use Ling\Bat\HashTool;
 use Ling\Bat\MimeTypeTool;
 use Ling\Bat\SmartCodeTool;
 use Ling\CSRFTools\CSRFProtector;
+use Ling\Light\ServiceContainer\LightServiceContainerInterface;
 use Ling\Light_AjaxFileUploadManager\Exception\LightAjaxFileUploadManagerException;
+use Ling\Light_Database\LightDatabasePdoWrapper;
+use Ling\Light_UserManager\UserManager\LightUserManagerInterface;
 use Ling\ThumbnailTools\ThumbnailTool;
 
 /**
@@ -51,6 +55,17 @@ class LightAjaxFileUploadManagerService
 
 
     /**
+     * This property holds the container for this instance.
+     * Note: this property is only required for certain actions, such as db_update.
+     * However, it's recommended to always instantiate the service with the container, just in case.
+     *
+     * @var LightServiceContainerInterface
+     *
+     */
+    protected $container;
+
+
+    /**
      * Builds the LightAjaxFileUploadManagerService instance.
      */
     public function __construct()
@@ -58,6 +73,7 @@ class LightAjaxFileUploadManagerService
         $this->applicationDir = null;
         $this->actionLists = [];
         $this->validationRules = [];
+        $this->container = null;
     }
 
     /**
@@ -68,6 +84,16 @@ class LightAjaxFileUploadManagerService
     public function setApplicationDir(string $applicationDir)
     {
         $this->applicationDir = $applicationDir;
+    }
+
+    /**
+     * Sets the container.
+     *
+     * @param LightServiceContainerInterface $container
+     */
+    public function setContainer(LightServiceContainerInterface $container)
+    {
+        $this->container = $container;
     }
 
 
@@ -196,7 +222,7 @@ class LightAjaxFileUploadManagerService
                                         //--------------------------------------------
                                         $pathToReturn = null;
                                         foreach ($actionList as $action) {
-                                            $returnPath = $this->executeAction($action, $phpFileItem);
+                                            $returnPath = $this->executeAction($action, $phpFileItem, $id);
                                             if (null !== $returnPath) {
                                                 $pathToReturn = $returnPath;
                                             }
@@ -312,12 +338,15 @@ class LightAjaxFileUploadManagerService
      * @param array $action
      * @param array $phpFileItem
      * A valid php $_FILES item.
+     * @param string $actionId
+     * The action id. This is used for debugging purposes.
      *
      * @return string|null
      * @throws \Exception
      */
-    protected function executeAction(array $action, array $phpFileItem)
+    protected function executeAction(array $action, array $phpFileItem, string $actionId)
     {
+        $ret = null;
         if (array_key_exists('storeDir', $action)) {
 
             $successfulCopy = false;
@@ -382,7 +411,68 @@ class LightAjaxFileUploadManagerService
             if (true === $successfulCopy && true === $isReturnedPath) {
                 if (array_key_exists('returnUrlDir', $action)) {
                     $returnUrlDir = $action['returnUrlDir'];
-                    return $returnUrlDir . "/" . $name;
+                    $ret = $returnUrlDir . "/" . $name;
+
+                    if (array_key_exists("db_update", $action)) {
+                        if (ArrayTool::arrayKeyExistAll(['table', 'column', 'where'], $action['db_update'])) {
+
+                            /**
+                             * @var $db LightDatabasePdoWrapper
+                             */
+                            $db = $this->container->get("database");
+
+                            $table = $action['db_update']['table'];
+                            $column = $action['db_update']['column'];
+                            $where = $action['db_update']['where'];
+
+                            $userManager = null;
+
+
+                            array_walk_recursive($where, function (&$v) use (&$userManager) {
+                                if ('$userIdentifier' === $v) {
+                                    if (null === $userManager) {
+                                        /**
+                                         * @var $userManager LightUserManagerInterface
+                                         */
+                                        $userManager = $this->container->get("user_manager");
+                                    }
+                                    $user = $userManager->getUser();
+                                    $v = $user->getIdentifier();
+                                }
+                                elseif ('$userId' === $v) {
+                                    if (null === $userManager) {
+                                        /**
+                                         * @var $userManager LightUserManagerInterface
+                                         */
+                                        $userManager = $this->container->get("user_manager");
+                                    }
+                                    $user = $userManager->getUser();
+                                    /**
+                                     * Note: the developer calling this action must make sure that the user has a getId method.
+                                     * This class just calls the method without knowing if it actually exists.
+                                     *
+                                     * Note2: this usually depends on your application, for instance if your app uses a WebsiteLightUser,
+                                     * this will work because the WebsiteLightUser has a getId method.
+                                     *
+                                     * For more info about the WebsiteLightUser: https://github.com/lingtalfi/Light_User/blob/master/doc/api/Ling/Light_User/WebsiteLightUser.md
+                                     *
+                                     *
+                                     */
+                                    $v = $user->getId();
+                                }
+                            });
+
+
+                            $db->update($table, [
+                                $column => $ret,
+                            ], $where);
+
+
+                        } else {
+                            throw new LightAjaxFileUploadManagerException("Bad configuration error: the db_update array must contain all the following keys: table, column, where. File name was " . $phpFileItem['name'] . ", action id=" . $actionId . ".");
+                        }
+                    }
+
 
                 } else {
                     throw new LightAjaxFileUploadManagerException("Bad configuration error: in the action you have defined storeDir, and isReturnedPath=true,  but returnUrlDir is undefined (file name=" . $phpFileItem['name'] . ").");
@@ -392,7 +482,7 @@ class LightAjaxFileUploadManagerService
             // some actions might not want to create copies of the uploaded file.
             // code of such actions would go here.
         }
-        return null;
+        return $ret;
     }
 
     /**

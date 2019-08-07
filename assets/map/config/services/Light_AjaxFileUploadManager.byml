@@ -3,6 +3,8 @@ ajax_file_upload_manager:
     methods:
         setApplicationDir:
             dir: ${app_dir}
+        setContainer:
+            container: @container()
     methods_collection: []
 #        -
 #            method: addActionLists
@@ -13,6 +15,11 @@ ajax_file_upload_manager:
 #                            storeDir: www/uploads/test
 #                            returnUrlDir: /uploads/test
 #                            imageTransformer: resize(200)
+#                            db_update:
+#                                table: user
+#                                column: avatar_url
+#                                where:
+#                                    user_id: $userIdentifier
 #        -
 #            method: addValidationRules
 #            args:

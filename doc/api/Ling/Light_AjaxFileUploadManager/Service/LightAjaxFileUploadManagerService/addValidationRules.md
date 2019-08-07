@@ -49,7 +49,7 @@ Returns void.
 
 Source Code
 ===========
-See the source code for method [LightAjaxFileUploadManagerService::addValidationRules](https://github.com/lingtalfi/Light_AjaxFileUploadManager/blob/master/Service/LightAjaxFileUploadManagerService.php#L88-L91)
+See the source code for method [LightAjaxFileUploadManagerService::addValidationRules](https://github.com/lingtalfi/Light_AjaxFileUploadManager/blob/master/Service/LightAjaxFileUploadManagerService.php#L114-L117)
 
 
 See Also
