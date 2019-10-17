@@ -15,6 +15,7 @@ use Ling\CSRFTools\CSRFProtector;
 use Ling\Light\ServiceContainer\LightServiceContainerInterface;
 use Ling\Light_AjaxFileUploadManager\Exception\LightAjaxFileUploadManagerException;
 use Ling\Light_Database\LightDatabasePdoWrapper;
+use Ling\Light_UserData\Service\LightUserDataService;
 use Ling\Light_UserManager\UserManager\LightUserManagerInterface;
 use Ling\ThumbnailTools\ThumbnailTool;
 
@@ -117,7 +118,7 @@ class LightAjaxFileUploadManagerService
     }
 
     /**
-     * This method implements page(step 1 and 2 of the ajax file upload protocol)
+     * This method implements step 1 and 2 of the @page(ajax file upload protocol)
      * and tries to upload the given phpFileItem to the backend server,
      * and return the json array in the form of a php array.
      *
@@ -321,8 +322,23 @@ class LightAjaxFileUploadManagerService
                 }
 
                 break;
+            case "extensions":
+                $allowedExtensions = $parameter;
+                if (false === is_array($allowedExtensions)) {
+                    $allowedExtensions = [$allowedExtensions];
+                }
+
+                $fileExt = FileSystemTool::getFileExtension($phpFileItem['name']);
+
+                if (false === in_array($fileExt, $allowedExtensions, true)) {
+                    $sList = implode(", ", $allowedExtensions);
+                    $errorMessage = "Validation error: the file $fileName doesn't have an accepted file extension. The allowed file extensions are $sList.";
+                    return false;
+                }
+
+                break;
             default:
-                throw new LightAjaxFileUploadManagerException("Bad configuration error: the validation rule $validationRuleName is not recognized yet (file name=$fileName).");
+                throw new LightAjaxFileUploadManagerException("Unknown validation rule: $validationRuleName (with file name=$fileName).");
                 break;
         }
         return true;
@@ -330,8 +346,8 @@ class LightAjaxFileUploadManagerService
 
     /**
      * Executes the action array on the file which path is given,
-     * and returns either the url (absolute, relative or even starting with http:// or https://)
-     * if the path is the chosen one (isReturnedPath=true), or null otherwise.
+     * and returns the url (absolute, relative or even starting with http:// or https://),
+     * depending on the configuration of the given action.
      *
      * The action array is defined in more details in the @page(action list) page.
      *
@@ -347,6 +363,18 @@ class LightAjaxFileUploadManagerService
     protected function executeAction(array $action, array $phpFileItem, string $actionId)
     {
         $ret = null;
+        //--------------------------------------------
+        // NAME TRANSFORM
+        //--------------------------------------------
+        $name = $phpFileItem['name'];
+        if (array_key_exists('nameTransformer', $action)) {
+            $name = $this->getTransformedName($name, $action['nameTransformer']);
+        }
+
+
+        //--------------------------------------------
+        // USING THE OLD STORE DIR TECHNIQUE
+        //--------------------------------------------
         if (array_key_exists('storeDir', $action)) {
 
             $successfulCopy = false;
@@ -359,20 +387,9 @@ class LightAjaxFileUploadManagerService
 
 
             //--------------------------------------------
-            // NAME TRANSFORM
-            //--------------------------------------------
-            $name = $phpFileItem['name'];
-            if (array_key_exists('nameTransformer', $action)) {
-                $name = $this->getTransformedName($name, $action['nameTransformer']);
-            }
-
-
-            //--------------------------------------------
             // IMAGE TRANSFORM
             //--------------------------------------------
             $copyPathAbsolute = $storeDir . "/" . $name;
-
-
             $hasBeenResized = false;
             $fileTmpPath = $phpFileItem['tmp_name'];
             if (true === FileTool::isImage($fileTmpPath)) {
@@ -438,8 +455,7 @@ class LightAjaxFileUploadManagerService
                                     }
                                     $user = $userManager->getUser();
                                     $v = $user->getIdentifier();
-                                }
-                                elseif ('$userId' === $v) {
+                                } elseif ('$userId' === $v) {
                                     if (null === $userManager) {
                                         /**
                                          * @var $userManager LightUserManagerInterface
@@ -478,6 +494,55 @@ class LightAjaxFileUploadManagerService
                     throw new LightAjaxFileUploadManagerException("Bad configuration error: in the action you have defined storeDir, and isReturnedPath=true,  but returnUrlDir is undefined (file name=" . $phpFileItem['name'] . ").");
                 }
             }
+        } elseif (array_key_exists("use_Light_UserData", $action) && true === $action['use_Light_UserData']) {
+            if (array_key_exists("path", $action)) {
+
+                /**
+                 * @var $userDataService LightUserDataService
+                 */
+                $userDataService = $this->container->get("user_data");
+
+                $isPrivate = $action['isPrivate'] ?? false;
+                $tags = $action['tags'] ?? [];
+                $path = $action['path'];
+
+
+                if (false !== strpos($path, '{extension}')) {
+                    $extension = FileSystemTool::getFileExtension($name);
+                    if ('' === $extension) {
+                        throw new LightAjaxFileUploadManagerException("An extension is required for the file name: " . $name);
+                    }
+                    $path = str_replace('{extension}', $extension, $path);
+                }
+
+
+                //--------------------------------------------
+                // IMAGE TRANSFORM
+                //--------------------------------------------
+                $fileTmpPath = $phpFileItem['tmp_name'];
+                $fileTmpPathDest = $fileTmpPath;
+                if (true === FileTool::isImage($fileTmpPath)) {
+                    if (array_key_exists("imageTransformer", $action)) {
+                        $this->transformImage($fileTmpPath, $fileTmpPathDest, $action['imageTransformer'], $phpFileItem['name']);
+                    }
+                }
+
+
+                $options = [
+                    "is_private" => $isPrivate,
+                    "tags" => $tags,
+                ];
+
+
+                $url = $userDataService->save($path, file_get_contents($phpFileItem['tmp_name']), $options);
+                unlink($phpFileItem['tmp_name']); // do never forget this!!!
+
+                return $url;
+
+
+            } else {
+                throw new LightAjaxFileUploadManagerException("The \"path\" key is not defined.");
+            }
         } else {
             // some actions might not want to create copies of the uploaded file.
             // code of such actions would go here.
@@ -511,7 +576,16 @@ class LightAjaxFileUploadManagerService
             case "resize":
                 $width = $transformerParams[0] ?? null;
                 $height = $transformerParams[0] ?? null;
-                if (true === ThumbnailTool::biggest($srcPath, $dstPath, $width, $height)) {
+
+                $extension = FileSystemTool::getFileExtension($dstPath);
+                if (empty($extension)) {
+                    $extension = FileSystemTool::getFileExtension($fileName);
+                }
+
+                $options = [
+                    "extension" => $extension,
+                ];
+                if (true === ThumbnailTool::biggest($srcPath, $dstPath, $width, $height, $options)) {
                     return true;
                 } else {
                     throw new LightAjaxFileUploadManagerException("ThumbnailTool error: couldn't resize the image (file name=$fileName).");

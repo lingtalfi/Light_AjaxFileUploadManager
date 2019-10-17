@@ -49,7 +49,7 @@ Returns void.
 
 Source Code
 ===========
-See the source code for method [LightAjaxFileUploadManagerService::addActionLists](https://github.com/lingtalfi/Light_AjaxFileUploadManager/blob/master/Service/LightAjaxFileUploadManagerService.php#L104-L107)
+See the source code for method [LightAjaxFileUploadManagerService::addActionLists](https://github.com/lingtalfi/Light_AjaxFileUploadManager/blob/master/Service/LightAjaxFileUploadManagerService.php#L105-L108)
 
 
 See Also

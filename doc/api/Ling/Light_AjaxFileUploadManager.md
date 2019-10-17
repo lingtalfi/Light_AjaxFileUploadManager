@@ -1,6 +1,6 @@
 Ling/Light_AjaxFileUploadManager
 ================
-2019-08-01 --> 2019-09-20
+2019-08-01 --> 2019-10-17
 
 
 
@@ -34,6 +34,7 @@ Dependencies
 - [Bat](https://github.com/lingtalfi/Bat)
 - [CSRFTools](https://github.com/lingtalfi/CSRFTools)
 - [Light_Database](https://github.com/lingtalfi/Light_Database)
+- [Light_UserData](https://github.com/lingtalfi/Light_UserData)
 - [Light_UserManager](https://github.com/lingtalfi/Light_UserManager)
 - [ThumbnailTools](https://github.com/lingtalfi/ThumbnailTools)
 - [Chloroform](https://github.com/lingtalfi/Chloroform)

@@ -58,7 +58,7 @@ Exceptions thrown
 
 Source Code
 ===========
-See the source code for method [LightAjaxFileUploadManagerService::getTransformedName](https://github.com/lingtalfi/Light_AjaxFileUploadManager/blob/master/Service/LightAjaxFileUploadManagerService.php#L536-L598)
+See the source code for method [LightAjaxFileUploadManagerService::getTransformedName](https://github.com/lingtalfi/Light_AjaxFileUploadManager/blob/master/Service/LightAjaxFileUploadManagerService.php#L610-L672)
 
 
 See Also
