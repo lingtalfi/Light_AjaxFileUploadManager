@@ -503,6 +503,7 @@ class LightAjaxFileUploadManagerService
                 $userDataService = $this->container->get("user_data");
 
                 $isPrivate = $action['isPrivate'] ?? false;
+                $use2Svp = $action['use_2svp'] ?? false;
                 $tags = $action['tags'] ?? [];
                 $path = $action['path'];
 
@@ -513,6 +514,14 @@ class LightAjaxFileUploadManagerService
                         throw new LightAjaxFileUploadManagerException("An extension is required for the file name: " . $name);
                     }
                     $path = str_replace('{extension}', $extension, $path);
+                }
+
+                if (true === $use2Svp) {
+                    $p = explode('.', $path, 2);
+                    $path = $p[0] . '.2svp';
+                    if (2 === count($p)) {
+                        $path .= '.' . $p[1];
+                    }
                 }
 
 
@@ -536,7 +545,6 @@ class LightAjaxFileUploadManagerService
 
                 $url = $userDataService->save($path, file_get_contents($phpFileItem['tmp_name']), $options);
                 unlink($phpFileItem['tmp_name']); // do never forget this!!!
-
                 return $url;
 
 

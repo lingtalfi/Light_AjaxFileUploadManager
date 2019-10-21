@@ -139,9 +139,13 @@ Note that all entries are optional, depending on the action.
                  The string accepts the following tags:
                     - {extension}: will be replaced with the file extension from the name (or transformed name if the name is transformed)
 - isPrivate: bool=false. Only used if the **use_Light_UserData** property is set to true.
-                Defines whether the uploaded file is private. The concept of privacy is the one defined in the [Light_UserData conception notes](https://github.com/lingtalfi/Light_UserData/blob/master/doc/pages/conception-notes.md).                 
-                  
-                             
+                Defines whether the uploaded file is private. The concept of privacy is the one defined in the [Light_UserData conception notes](https://github.com/lingtalfi/Light_UserData/blob/master/doc/pages/conception-notes.md).
+- use_2svp: bool=false. Only used if the **use_Light_UserData** property is set to true.
+                You should only use this if you use the [symbolic file name](https://github.com/lingtalfi/TheBar/blob/master/discussions/ajax-file-upload.md#symbolic-file-names) system.
+                See the [2 steps validation process](https://github.com/lingtalfi/TheBar/blob/master/discussions/ajax-file-upload.md#2-steps-validation-process) section for more details.
+                Note: in this plugin we only implement the first part of the 2svp system, where we save the file with the 2svp extension.
+                The second part (removing the 2svp extension) is outside the scope of this plugin.                 
+                                               
                              
                              
 Examples

@@ -133,6 +133,10 @@ I recommend to use CSRF protection all the time. This is explained in the aforem
 History Log
 =============
 
+- 1.1.0 -- 2019-10-21
+
+    - added 2svp action list
+
 - 1.3.0 -- 2019-10-17
 
     - added Light_UserData system

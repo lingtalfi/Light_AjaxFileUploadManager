@@ -1,6 +1,6 @@
 Ling/Light_AjaxFileUploadManager
 ================
-2019-08-01 --> 2019-10-17
+2019-08-01 --> 2019-10-21
 
 
 
@@ -24,7 +24,7 @@ Table of contents
     - [LightAjaxFileUploadManagerRenderingUtil::__construct](https://github.com/lingtalfi/Light_AjaxFileUploadManager/blob/master/doc/api/Ling/Light_AjaxFileUploadManager/Util/LightAjaxFileUploadManagerRenderingUtil/__construct.md) &ndash; Builds the LightAjaxFileUploadManagerRenderingUtil instance.
     - [LightAjaxFileUploadManagerRenderingUtil::setSuffix](https://github.com/lingtalfi/Light_AjaxFileUploadManager/blob/master/doc/api/Ling/Light_AjaxFileUploadManager/Util/LightAjaxFileUploadManagerRenderingUtil/setSuffix.md) &ndash; Sets the suffix.
     - [LightAjaxFileUploadManagerRenderingUtil::printJavascript](https://github.com/lingtalfi/Light_AjaxFileUploadManager/blob/master/doc/api/Ling/Light_AjaxFileUploadManager/Util/LightAjaxFileUploadManagerRenderingUtil/printJavascript.md) &ndash; Prints the javascript code necessary to instantiate a fully configured fileUploader js object.
-    - [LightAjaxFileUploadManagerRenderingUtil::printField](https://github.com/lingtalfi/Light_AjaxFileUploadManager/blob/master/doc/api/Ling/Light_AjaxFileUploadManager/Util/LightAjaxFileUploadManagerRenderingUtil/printField.md) &ndash; Prints the html field using the given form, and assuming the js file uploader client (aka fileUploader) is used.
+    - [LightAjaxFileUploadManagerRenderingUtil::printField](https://github.com/lingtalfi/Light_AjaxFileUploadManager/blob/master/doc/api/Ling/Light_AjaxFileUploadManager/Util/LightAjaxFileUploadManagerRenderingUtil/printField.md) &ndash; Prints the html field using the given field array, and assuming the js file uploader client (https://github.com/lingtalfi/jsFileUploader) is used.
 
 
 Dependencies
@@ -37,6 +37,5 @@ Dependencies
 - [Light_UserData](https://github.com/lingtalfi/Light_UserData)
 - [Light_UserManager](https://github.com/lingtalfi/Light_UserManager)
 - [ThumbnailTools](https://github.com/lingtalfi/ThumbnailTools)
-- [Chloroform](https://github.com/lingtalfi/Chloroform)
 
 
