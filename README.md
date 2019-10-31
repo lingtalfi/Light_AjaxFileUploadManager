@@ -133,6 +133,10 @@ I recommend to use CSRF protection all the time. This is explained in the aforem
 History Log
 =============
 
+- 1.2.0 -- 2019-10-31
+
+    - add LightAjaxFileUploadManagerService->addConfigurationItemsByFile
+    
 - 1.1.0 -- 2019-10-21
 
     - added 2svp action list

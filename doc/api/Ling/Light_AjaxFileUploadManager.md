@@ -1,6 +1,6 @@
 Ling/Light_AjaxFileUploadManager
 ================
-2019-08-01 --> 2019-10-21
+2019-08-01 --> 2019-10-31
 
 
 
@@ -19,6 +19,7 @@ Table of contents
     - [LightAjaxFileUploadManagerService::setContainer](https://github.com/lingtalfi/Light_AjaxFileUploadManager/blob/master/doc/api/Ling/Light_AjaxFileUploadManager/Service/LightAjaxFileUploadManagerService/setContainer.md) &ndash; Sets the container.
     - [LightAjaxFileUploadManagerService::addActionLists](https://github.com/lingtalfi/Light_AjaxFileUploadManager/blob/master/doc/api/Ling/Light_AjaxFileUploadManager/Service/LightAjaxFileUploadManagerService/addActionLists.md) &ndash; Adds action lists to this instance.
     - [LightAjaxFileUploadManagerService::addValidationRules](https://github.com/lingtalfi/Light_AjaxFileUploadManager/blob/master/doc/api/Ling/Light_AjaxFileUploadManager/Service/LightAjaxFileUploadManagerService/addValidationRules.md) &ndash; Adds validation rules to this instance.
+    - [LightAjaxFileUploadManagerService::addConfigurationItemsByFile](https://github.com/lingtalfi/Light_AjaxFileUploadManager/blob/master/doc/api/Ling/Light_AjaxFileUploadManager/Service/LightAjaxFileUploadManagerService/addConfigurationItemsByFile.md) &ndash; Adds the configuration items found in the given file.
     - [LightAjaxFileUploadManagerService::uploadItem](https://github.com/lingtalfi/Light_AjaxFileUploadManager/blob/master/doc/api/Ling/Light_AjaxFileUploadManager/Service/LightAjaxFileUploadManagerService/uploadItem.md) &ndash; and return the json array in the form of a php array.
 - [LightAjaxFileUploadManagerRenderingUtil](https://github.com/lingtalfi/Light_AjaxFileUploadManager/blob/master/doc/api/Ling/Light_AjaxFileUploadManager/Util/LightAjaxFileUploadManagerRenderingUtil.md) &ndash; The LightAjaxFileUploadManagerRenderingUtil class.
     - [LightAjaxFileUploadManagerRenderingUtil::__construct](https://github.com/lingtalfi/Light_AjaxFileUploadManager/blob/master/doc/api/Ling/Light_AjaxFileUploadManager/Util/LightAjaxFileUploadManagerRenderingUtil/__construct.md) &ndash; Builds the LightAjaxFileUploadManagerRenderingUtil instance.
@@ -31,6 +32,7 @@ Dependencies
 ============
 - [Light](https://github.com/lingtalfi/Light)
 - [Light_Logger](https://github.com/lingtalfi/Light_Logger)
+- [BabyYaml](https://github.com/lingtalfi/BabyYaml)
 - [Bat](https://github.com/lingtalfi/Bat)
 - [CSRFTools](https://github.com/lingtalfi/CSRFTools)
 - [Light_Database](https://github.com/lingtalfi/Light_Database)

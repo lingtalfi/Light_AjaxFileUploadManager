@@ -3,6 +3,7 @@
 
 namespace Ling\Light_AjaxFileUploadManager\Service;
 
+use Ling\BabyYaml\BabyYamlUtil;
 use Ling\Bat\ArrayTool;
 use Ling\Bat\CaseTool;
 use Ling\Bat\ConvertTool;
@@ -115,6 +116,32 @@ class LightAjaxFileUploadManagerService
     public function addValidationRules(array $validationRules)
     {
         $this->validationRules = array_merge($this->validationRules, $validationRules);
+    }
+
+
+    /**
+     * Adds the configuration items found in the given file.
+     * See the @page(configuration files page) for more info.
+     *
+     *
+     * @param string $file
+     */
+    public function addConfigurationItemsByFile(string $file)
+    {
+        $data = BabyYamlUtil::readFile($file);
+        $items = $data['items'] ?? [];
+        foreach ($items as $id => $confItem) {
+            if (array_key_exists("action", $confItem)) {
+                $this->addActionLists([
+                    $id => $confItem['action'],
+                ]);
+            }
+            if (array_key_exists("validation", $confItem)) {
+                $this->addValidationRules([
+                    $id => $confItem['validation'],
+                ]);
+            }
+        }
     }
 
     /**

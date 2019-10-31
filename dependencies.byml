@@ -2,6 +2,7 @@ dependencies:
     Ling: 
         - Light
         - Light_Logger
+        - BabyYaml
         - Bat
         - CSRFTools
         - Light_Database
