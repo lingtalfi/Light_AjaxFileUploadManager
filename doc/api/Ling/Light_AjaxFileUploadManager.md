@@ -1,6 +1,6 @@
 Ling/Light_AjaxFileUploadManager
 ================
-2019-08-01 --> 2019-10-31
+2019-08-01 --> 2019-11-07
 
 
 
@@ -34,7 +34,7 @@ Dependencies
 - [Light_Logger](https://github.com/lingtalfi/Light_Logger)
 - [BabyYaml](https://github.com/lingtalfi/BabyYaml)
 - [Bat](https://github.com/lingtalfi/Bat)
-- [CSRFTools](https://github.com/lingtalfi/CSRFTools)
+- [Light_CsrfSimple](https://github.com/lingtalfi/Light_CsrfSimple)
 - [Light_Database](https://github.com/lingtalfi/Light_Database)
 - [Light_UserData](https://github.com/lingtalfi/Light_UserData)
 - [Light_UserManager](https://github.com/lingtalfi/Light_UserManager)

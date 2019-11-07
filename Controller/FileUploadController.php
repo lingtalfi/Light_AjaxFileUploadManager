@@ -5,6 +5,7 @@ namespace Ling\Light_AjaxFileUploadManager\Controller;
 
 
 use Ling\Light\Controller\LightController;
+use Ling\Light\Http\HttpJsonResponse;
 use Ling\Light_AjaxFileUploadManager\Service\LightAjaxFileUploadManagerService;
 use Ling\Light_Logger\LightLoggerService;
 
@@ -84,7 +85,6 @@ class FileUploadController extends LightController
                 "error" => "Bad configuration error: the \"id\" key was not found in \$_POST."
             ];
         }
-        return json_encode($ret);
-
+        return HttpJsonResponse::create($ret);
     }
 }

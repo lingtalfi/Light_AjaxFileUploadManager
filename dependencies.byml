@@ -4,7 +4,7 @@ dependencies:
         - Light_Logger
         - BabyYaml
         - Bat
-        - CSRFTools
+        - Light_CsrfSimple
         - Light_Database
         - Light_UserData
         - Light_UserManager
