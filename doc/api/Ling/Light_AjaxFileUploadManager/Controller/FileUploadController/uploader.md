@@ -48,7 +48,7 @@ Returns void.
 
 Source Code
 ===========
-See the source code for method [FileUploadController::uploader](https://github.com/lingtalfi/Light_AjaxFileUploadManager/blob/master/Controller/FileUploadController.php#L55-L89)
+See the source code for method [FileUploadController::uploader](https://github.com/lingtalfi/Light_AjaxFileUploadManager/blob/master/Controller/FileUploadController.php#L58-L116)
 
 
 See Also

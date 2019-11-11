@@ -24,4 +24,5 @@ https://github.com/lingtalfi/Light_AjaxFileUploadManager/blob/master/doc/api/Lin
 https://github.com/lingtalfi/Light_AjaxFileUploadManager/blob/master/doc/pages/action-list.md
 https://github.com/lingtalfi/Light_AjaxFileUploadManager/blob/master/doc/pages/ajax-file-upload-protocol.md
 https://github.com/lingtalfi/Light_AjaxFileUploadManager/blob/master/doc/pages/configuration-files.md
+https://github.com/lingtalfi/Light_AjaxFileUploadManager/blob/master/doc/pages/events.md
 https://github.com/lingtalfi/Light_AjaxFileUploadManager/blob/master/doc/pages/validation-rules.md
