@@ -133,6 +133,10 @@ I recommend to use CSRF protection all the time. This is explained in the aforem
 History Log
 =============
 
+- 1.5.0 -- 2019-11-25
+
+    - now ships with embedded JFileUploader dependency
+    
 - 1.4.0 -- 2019-11-11
 
     - update FileUploadController->uploader, now dispatches Light_AjaxFileUploadManager.on_controller_exception_caught event

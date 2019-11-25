@@ -10,6 +10,8 @@ dependencies:
         - Light_UserData
         - Light_UserManager
         - ThumbnailTools
+        - Light_HtmlPageCopilot
+        - JFileUploader
     
 
 post_install: 
