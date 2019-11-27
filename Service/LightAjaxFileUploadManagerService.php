@@ -188,7 +188,7 @@ class LightAjaxFileUploadManagerService
                 /**
                  * @var $csrfService LightCsrfSessionService
                  */
-                $csrfService = $this->container->get("csrf_simple");
+                $csrfService = $this->container->get("csrf_session");
                 $tokenValue = $params['csrf_token'];
                 if (false === $csrfService->isValid($tokenValue)) {
                     $ret = [
