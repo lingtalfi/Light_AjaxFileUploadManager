@@ -5,7 +5,7 @@ dependencies:
         - Light_Events
         - Light_Logger
         - BabyYaml
-        - Light_CsrfSimple
+        - Light_CsrfSession
         - Light_Database
         - Light_UserData
         - Light_UserManager

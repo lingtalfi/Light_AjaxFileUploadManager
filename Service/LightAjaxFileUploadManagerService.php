@@ -14,7 +14,7 @@ use Ling\Bat\MimeTypeTool;
 use Ling\Bat\SmartCodeTool;
 use Ling\Light\ServiceContainer\LightServiceContainerInterface;
 use Ling\Light_AjaxFileUploadManager\Exception\LightAjaxFileUploadManagerException;
-use Ling\Light_CsrfSimple\Service\LightCsrfSimpleService;
+use Ling\Light_CsrfSession\Service\LightCsrfSessionService;
 use Ling\Light_Database\LightDatabasePdoWrapper;
 use Ling\Light_UserData\Service\LightUserDataService;
 use Ling\Light_UserManager\UserManager\LightUserManagerInterface;
@@ -186,11 +186,11 @@ class LightAjaxFileUploadManagerService
             if (array_key_exists("csrf_token", $params)) {
 
                 /**
-                 * @var $csrfSimple LightCsrfSimpleService
+                 * @var $csrfService LightCsrfSessionService
                  */
-                $csrfSimple = $this->container->get("csrf_simple");
+                $csrfService = $this->container->get("csrf_simple");
                 $tokenValue = $params['csrf_token'];
-                if (false === $csrfSimple->isValid($tokenValue)) {
+                if (false === $csrfService->isValid($tokenValue)) {
                     $ret = [
                         "type" => "error",
                         "error" => "Request denied: CSRF token invalid.",

@@ -133,6 +133,10 @@ I recommend to use CSRF protection all the time. This is explained in the aforem
 History Log
 =============
 
+- 1.6.0 -- 2019-11-27
+
+    - use of csrf_session service replaces csrf_simple
+
 - 1.5.0 -- 2019-11-25
 
     - now ships with embedded JFileUploader dependency
