@@ -359,7 +359,7 @@ class LightAjaxFileUploadManagerService
                     $allowedExtensions = [$allowedExtensions];
                 }
 
-                $fileExt = FileSystemTool::getFileExtension($phpFileItem['name']);
+                $fileExt = strtolower(FileSystemTool::getFileExtension($phpFileItem['name']));
 
                 if (false === in_array($fileExt, $allowedExtensions, true)) {
                     $sList = implode(", ", $allowedExtensions);

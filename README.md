@@ -133,6 +133,10 @@ I recommend to use CSRF protection all the time. This is explained in the aforem
 History Log
 =============
 
+- 1.6.2 -- 2020-01-10
+
+    - fix LightAjaxFileUploadManagerService->validatePhpFileItem not recognizing file extension with different case
+    
 - 1.6.1 -- 2019-11-27
 
     - fix functional typo csrf_simple instead of csrf_session

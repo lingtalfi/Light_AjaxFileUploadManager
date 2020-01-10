@@ -4,7 +4,7 @@
 
 The LightAjaxFileUploadManagerException class
 ================
-2019-08-01 --> 2019-11-27
+2019-08-01 --> 2020-01-10
 
 
 
