@@ -60,8 +60,8 @@ class FileUploadController extends LightController
         /**
          * @var $logger LightLoggerService
          */
-        $logger = $this->getContainer()->get("logger");
-        $logger->debug("test");
+//        $logger = $this->getContainer()->get("logger");
+//        $logger->debug("test");
 //        az($_POST, $_GET, $_FILES);
 
         if (array_key_exists("id", $_POST)) {
