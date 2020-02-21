@@ -4,7 +4,6 @@
 namespace Ling\Light_AjaxFileUploadManager\Controller;
 
 
-use Ling\Bat\ClassTool;
 use Ling\Light\Controller\LightController;
 use Ling\Light\Events\LightEvent;
 use Ling\Light\Http\HttpJsonResponse;
@@ -66,43 +65,34 @@ class FileUploadController extends LightController
 
         if (array_key_exists("id", $_POST)) {
             $id = $_POST['id'];
-            if (array_key_exists("item", $_FILES)) {
+            $phpFileItem = $_FILES['item'] ?? null;
 
 
-                try {
+            try {
 
-                    /**
-                     * @var $ajaxService LightAjaxFileUploadManagerService
-                     */
-                    $ajaxService = $this->getContainer()->get('ajax_file_upload_manager');
-                    $params = $_POST;
-                    $ret = $ajaxService->uploadItem($id, $_FILES['item'], $params);
-                } catch (\Exception $e) {
-                    $ret = [
-                        "type" => "error",
-                        "error" => $e->getMessage(),
-                        "exception" => ClassTool::getShortName($e),
-                    ];
-
-
-                    // dispatch the exception (to allow deeper investigation)
-                    /**
-                     * @var $events LightEventsService
-                     */
-                    $events = $this->getContainer()->get("events");
-                    $data = LightEvent::createByContainer($this->getContainer());
-                    $data->setVar('exception', $e);
-                    $events->dispatch("Light_AjaxFileUploadManager.on_controller_exception_caught", $data);
-
-
-                }
-
-
-            } else {
+                /**
+                 * @var $ajaxService LightAjaxFileUploadManagerService
+                 */
+                $ajaxService = $this->getContainer()->get('ajax_file_upload_manager');
+                $params = $_POST;
+                $ret = $ajaxService->processItem($id, $phpFileItem, $params);
+            } catch (\Exception $e) {
                 $ret = [
-                    "type" => 'error',
-                    "error" => "Bad configuration error: the \"item\" key was not found in \$_FILES."
+                    "type" => "error",
+                    "error" => $e->getMessage(),
                 ];
+
+
+                // dispatch the exception (to allow deeper investigation)
+                /**
+                 * @var $events LightEventsService
+                 */
+                $events = $this->getContainer()->get("events");
+                $data = LightEvent::createByContainer($this->getContainer());
+                $data->setVar('exception', $e);
+                $events->dispatch("Light_AjaxFileUploadManager.on_controller_exception_caught", $data);
+
+
             }
 
 
