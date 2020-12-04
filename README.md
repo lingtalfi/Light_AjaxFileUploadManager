@@ -112,7 +112,11 @@ Basically what you want to do is create a [configuration item](https://github.co
 History Log
 =============
 
-    
+
+- 1.8.2 -- 2020-12-04
+
+    - Add lpi-deps.byml file
+
 - 1.8.1 -- 2020-11-06
 
     - update api to adapt Bat 1.279
