@@ -113,6 +113,10 @@ History Log
 =============
 
 
+- 1.8.5 -- 2021-02-19
+
+    - upgrade dependencies
+
 - 1.8.4 -- 2021-02-19
 
     - upgrade dependencies
