@@ -85,7 +85,7 @@ $easy_route.methods_collection:
     -
         method: registerBundleFile
         args:
-            file: config/data/Ling.Light_AjaxFileUploadManager/Light_EasyRoute/afup_routes.byml
+            file: config/data/Ling.Light_AjaxFileUploadManager/Ling.Light_EasyRoute/afup_routes.byml
 
 
 ```
@@ -120,7 +120,7 @@ History Log
 
 - 1.8.7 -- 2021-03-09
 
-    - update planet to adapt Ling.Light:0.70.0, the config/data part
+    - update planet to adapt Ling.Light:0.70.0, the config/data part (2nd try)
   
 - 1.8.6 -- 2021-03-05
 
