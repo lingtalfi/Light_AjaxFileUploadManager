@@ -118,6 +118,10 @@ History Log
 =============
 
 
+- 1.8.12 -- 2021-05-11
+
+    - Update deps (by CommitWizard).
+
 - 1.8.11 -- 2021-05-03
 
     - Update dependencies to Ling.Light_Logger (pushed by SubscribersUtil)
