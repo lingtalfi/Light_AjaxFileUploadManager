@@ -77,17 +77,6 @@ ajax_file_upload_manager:
     methods_collection: []
 
 
-
-# --------------------------------------
-# hooks
-# --------------------------------------
-$easy_route.methods_collection:
-    -
-        method: registerBundleFile
-        args:
-            file: config/data/Ling.Light_AjaxFileUploadManager/Ling.Light_EasyRoute/afup_routes.byml
-
-
 ```
 
 
@@ -118,6 +107,10 @@ History Log
 =============
 
 
+- 1.8.15 -- 2021-06-28
+
+    - fix service configuration typo
+  
 - 1.8.14 -- 2021-06-28
 
     - fix api wrong reference to Ling.Light_Logger
