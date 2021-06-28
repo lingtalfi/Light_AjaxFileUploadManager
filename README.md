@@ -1,6 +1,6 @@
 Light_AjaxFileUploadManager
 ===========
-2019-08-01 -> 2021-03-09
+2019-08-01 -> 2021-06-28
 
 
 
@@ -118,6 +118,11 @@ History Log
 =============
 
 
+- 1.8.14 -- 2021-06-28
+
+    - fix api wrong reference to Ling.Light_Logger
+    - update api, now register routes via Ling.Light_EasyRoute open system
+  
 - 1.8.13 -- 2021-05-31
 
     - Removing trailing plus in lpi-deps file (to work with Light_PlanetInstaller:2.0.0 api
