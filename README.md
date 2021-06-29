@@ -1,6 +1,6 @@
 Light_AjaxFileUploadManager
 ===========
-2019-08-01 -> 2021-06-28
+2019-08-01 -> 2021-06-29
 
 
 
@@ -107,6 +107,10 @@ History Log
 =============
 
 
+- 1.8.16 -- 2021-06-29
+
+    - update easy route namespace (add galaxy prefix)
+  
 - 1.8.15 -- 2021-06-28
 
     - fix service configuration typo
